@@ -9,7 +9,7 @@ app.get('/',function(req,res){
 
 app.post('/process', urlencodedParser, function (req, res) {
 	
-	var response = {
+var response = {
 firstname:req.body.fname,
 lastname:req.body.lname
 };
