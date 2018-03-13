@@ -1,22 +1,17 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-app.use(express.static('public'));
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
-app.get('/',function(req,res){
-    res.sendFile( __dirname+ '/name.html');
-});
+module.exports = function (context, req) {
+    context.log('JavaScript HTTP trigger function processed a request.');
 
-app.post('/process', urlencodedParser, function (req, res) {
-	
-var response = {
-firstname:req.body.fname,
-lastname:req.body.lname
+    if (req.body) {
+        context.res = {
+            // status: 200, /* Defaults to 200 */
+            body: "Hello " + req.body.fname +req.body.lname
+        };
+    }
+    else {
+        context.res = {
+            status: 400,
+            body: "Please pass a name on the query string or in the request body"
+        };
+    }
+    context.done();
 };
-console.log(response);
-res.send(response);
-})
- app.listen(8081, function () {
-
-console.log("Example app listening at http://127.0.0.1:8081");
-});
