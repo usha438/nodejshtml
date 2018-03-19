@@ -4,7 +4,7 @@ module.exports = function (context, req) {
     if (req.body) {
         context.res = {
             // status: 200, /* Defaults to 200 */
-            body: "Hello " + req.body.fname +req.body.lname
+            body: "Welcome " + req.body.fname +req.body.lname
         };
     }
     else {
